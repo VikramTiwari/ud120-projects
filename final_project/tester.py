@@ -1,8 +1,8 @@
 #!/usr/bin/pickle
 
 """ a basic script for importing student's POI identifier,
-    and checking the results that they get from it 
- 
+    and checking the results that they get from it
+
     requires that the algorithm, dataset, and features list
     be written to my_classifier.pkl, my_dataset.pkl, and
     my_feature_list.pkl, respectively
@@ -17,8 +17,8 @@ sys.path.append("../tools/")
 from feature_format import featureFormat, targetFeatureSplit
 
 PERF_FORMAT_STRING = "\
-\tAccuracy: {:>0.{display_precision}f}\tPrecision: {:>0.{display_precision}f}\t\
-Recall: {:>0.{display_precision}f}\tF1: {:>0.{display_precision}f}\tF2: {:>0.{display_precision}f}"
+\tAccuracy: {:>0.{display_precision}f}\t\tPrecision: {:>0.{display_precision}f}\t\
+Recall: {:>0.{display_precision}f}\t\tF1: {:>0.{display_precision}f}\t\tF2: {:>0.{display_precision}f}"
 RESULTS_FORMAT_STRING = "\tTotal predictions: {:4d}\tTrue positives: {:4d}\tFalse positives: {:4d}\
 \tFalse negatives: {:4d}\tTrue negatives: {:4d}"
 
@@ -30,7 +30,7 @@ def test_classifier(clf, dataset, feature_list, folds = 1000):
     false_negatives = 0
     true_positives = 0
     false_positives = 0
-    for train_idx, test_idx in cv: 
+    for train_idx, test_idx in cv:
         features_train = []
         features_test  = []
         labels_train   = []
@@ -41,7 +41,7 @@ def test_classifier(clf, dataset, feature_list, folds = 1000):
         for jj in test_idx:
             features_test.append( features[jj] )
             labels_test.append( labels[jj] )
-        
+
         ### fit the classifier using training set, and test on test set
         clf.fit(features_train, labels_train)
         predictions = clf.predict(features_test)
